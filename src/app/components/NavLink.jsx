@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const NavLink = ({ href, title }) => {
   const handleClick = (e) => {
     e.preventDefault();
