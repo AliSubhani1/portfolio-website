@@ -15,31 +15,28 @@ const EmailSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const serviceID = process.env.NEXT_PUBLIC_SERVICE_ID; 
-    const templateID = process.env.NEXT_PUBLIC_TEMPLATE_ID; 
-    const userID = process.env.NEXT_PUBLIC_USER_ID; 
+    const serviceID = process.env.NEXT_PUBLIC_SERVICE_ID;
+    const templateID = process.env.NEXT_PUBLIC_TEMPLATE_ID;
+    const userID = process.env.NEXT_PUBLIC_USER_ID;
 
-    emailjs
-      .sendForm(serviceID, templateID, e.target, userID)
-      .then(
-        (result) => {
-          console.log(result.text);
-          setEmailSubmitted(true);
-          setIsSubmitting(false);
-          e.target.reset(); // Clear form fields after submission
+    emailjs.sendForm(serviceID, templateID, e.target, userID).then(
+      (result) => {
+        console.log(result.text);
+        setEmailSubmitted(true);
+        setIsSubmitting(false);
+        e.target.reset(); // Clear form fields after submission
 
-          // Remove success message after 5 seconds
-          setTimeout(() => {
-            setEmailSubmitted(false);
-          }, 5000);
-        },
-        (error) => {
-          console.log(error.text);
-          setIsSubmitting(false);
-        }
-      );
+        // Remove success message after 5 seconds
+        setTimeout(() => {
+          setEmailSubmitted(false);
+        }, 5000);
+      },
+      (error) => {
+        console.log(error.text);
+        setIsSubmitting(false);
+      }
+    );
   };
-
 
   return (
     <section
@@ -47,7 +44,7 @@ const EmailSection = () => {
       className="grid md:grid-cols-2 my-12 md:my-12 py-24 gap-4 relative"
     >
       <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
-      <div className="z-10">
+      <div className="">
         <h5 className="text-xl font-bold text-white my-2">
           Let&apos;s Connect
         </h5>
@@ -59,20 +56,25 @@ const EmailSection = () => {
         </p>
         <div className="flex gap-4 text-white mb-4">
           <strong>Call Me: </strong>
-          <a href="tel:+358452702614" className="text-white">+358452702614</a>
+          <a href="tel:+358452702614" className="text-white">
+            +358452702614
+          </a>
         </div>
         <div className="socials flex flex-row gap-2">
           <Link href="https://github.com/AliSubhani1" target="_blank">
             <Image src={GithubIcon} alt="Github Icon" />
           </Link>
-          <Link href="https://www.linkedin.com/in/chmuhammadali/"  target="_blank">
+          <Link
+            href="https://www.linkedin.com/in/chmuhammadali/"
+            target="_blank"
+          >
             <Image src={LinkedinIcon} alt="Linkedin Icon" />
           </Link>
         </div>
       </div>
       <div>
-      {isSubmitting ? (
-          <Spinner /> 
+        {isSubmitting ? (
+          <Spinner />
         ) : (
           <form className="flex flex-col" onSubmit={handleSubmit}>
             <div className="mb-6">
@@ -143,12 +145,13 @@ const EmailSection = () => {
             >
               Send Message
             </button>
-          </form>)}
+          </form>
+        )}
         {emailSubmitted ? (
           <p className="text-green-500 text-sm mt-2">
             Email sent successfully!
           </p>
-        ):null}
+        ) : null}
       </div>
     </section>
   );

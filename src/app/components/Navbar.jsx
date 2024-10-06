@@ -6,7 +6,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
 import { navLinks } from "../constants";
 
-
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
@@ -19,7 +18,7 @@ const Navbar = () => {
         >
           Muhammad Ali
         </Link>
-        <div className="mobile-menu block md:hidden">
+        <div className="mobile-menu z-10 block md:hidden">
           {!navbarOpen ? (
             <button
               onClick={() => setNavbarOpen(true)}
